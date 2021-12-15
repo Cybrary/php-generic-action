@@ -11,7 +11,7 @@ command_string=""
 
 if [ -n "$ACTION_COMMAND" ]
 then
-	command_string="$command_string $ACTION_COMMAND"
+	command_string="$ACTION_COMMAND"
 fi
 
 echo "Command: $command_string" >> output.log 2>&1
@@ -38,7 +38,6 @@ echo "::set-output name=full_command::${command_string}"
 
 docker run --rm \
 	--volume "${GITHUB_WORKSPACE}":/app \
-	--volume "/tmp/composer-cache":/tmp/composer-cache \
 	--workdir /app \
 	--env-file ./DOCKER_ENV \
 	--network host \
